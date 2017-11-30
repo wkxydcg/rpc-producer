@@ -1,6 +1,8 @@
-package com.wkx.provider.config;
+package com.wkx.provider.init;
 
 import com.alibaba.fastjson.JSONObject;
+import com.wkx.provider.util.BeanFactory;
+import com.wkx.provider.env.ServiceEnv;
 import org.I0Itec.zkclient.ZkClient;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -19,15 +21,15 @@ import java.util.Set;
 @Component
 public class ZkRegister implements ApplicationRunner {
 
-    private RequestMappingHandlerMapping requestMappingHandlerMapping=BeanFactory.getBean(RequestMappingHandlerMapping.class);
+    private RequestMappingHandlerMapping requestMappingHandlerMapping= BeanFactory.getBean(RequestMappingHandlerMapping.class);
 
     @Override
     public void run(ApplicationArguments applicationArguments) throws Exception {
-        String zkServers=AppConfigurer.getProperty("zookeeper.servers");
-        assert zkServers!=null;
-        String applicationPath="/"+AppConfigurer.getProperty("spring.application.name");
-        String localPort=AppConfigurer.getProperty("server.port");
-        if(StringUtils.isEmpty(localPort)) localPort=AppConfigurer.getProperty("local.server.port");
+        String zkServers= ServiceEnv.getProperty("zookeeper.servers");
+        if(StringUtils.isEmpty(zkServers)) return;
+        String applicationPath="/"+ ServiceEnv.getProperty("spring.application.name");
+        String localPort= ServiceEnv.getProperty("server.port");
+        if(StringUtils.isEmpty(localPort)) localPort= ServiceEnv.getProperty("local.server.port");
         ZkClient zkClient=new ZkClient(zkServers);
         if(!zkClient.exists(applicationPath)){
             zkClient.createEphemeral(applicationPath);

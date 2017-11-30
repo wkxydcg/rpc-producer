@@ -1,4 +1,4 @@
-package com.wkx.provider.config;
+package com.wkx.provider.util;
 
 import org.I0Itec.zkclient.ZkClient;
 
@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class ZkUtils {
 
-    public static ZkClient zkClient=BeanFactory.getBean(ZkClient.class);
+    public static ZkClient zkClient= BeanFactory.getBean(ZkClient.class);
 
     public static Object getData(String path){
         return zkClient.readData(path);

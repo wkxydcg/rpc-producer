@@ -1,0 +1,5 @@
+org.springframework.context.ApplicationContextInitializer=\
+com.wkx.provider.env.ServiceEnv,\
+com.wkx.provider.util.BeanFactory
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.wkx.provider.config.ProviderConfig
