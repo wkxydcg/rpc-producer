@@ -1,4 +1,4 @@
-# rpc-provider
+# rpc-producer
 一个基于http协议的rpc服务端 采用zookeeper作为注册中心,开箱即用
 
 ## 配置
