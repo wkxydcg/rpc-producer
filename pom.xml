@@ -5,7 +5,7 @@
 
 	<groupId>com.wkx</groupId>
 	<artifactId>spring-boot-starter-provider</artifactId>
-	<version>0.1</version>
+	<version>0.1.2</version>
 	<packaging>jar</packaging>
 
 	<name>provider</name>
@@ -46,6 +46,12 @@
 			<groupId>com.101tec</groupId>
 			<artifactId>zkclient</artifactId>
 			<version>0.10</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections</artifactId>
+			<version>0.9.11</version>
 		</dependency>
 	</dependencies>
 
