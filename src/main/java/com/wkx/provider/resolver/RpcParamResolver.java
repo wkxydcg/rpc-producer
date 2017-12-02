@@ -2,7 +2,7 @@ package com.wkx.provider.resolver;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.wkx.provider.annotation.RpcService;
+import com.wkx.provider.annotation.RpcProducer;
 import com.wkx.provider.util.ClassUtils;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -22,7 +22,7 @@ public class RpcParamResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        Annotation rpcService[]=parameter.getMethod().getDeclaringClass().getAnnotationsByType(RpcService.class);
+        Annotation rpcService[]=parameter.getMethod().getDeclaringClass().getAnnotationsByType(RpcProducer.class);
         return rpcService.length > 0;
     }
 

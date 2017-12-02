@@ -1,7 +1,7 @@
 package com.wkx.provider.init;
 
 import com.alibaba.fastjson.JSONObject;
-import com.wkx.provider.annotation.RpcService;
+import com.wkx.provider.annotation.RpcProducer;
 import com.wkx.provider.env.ServiceEnv;
 import com.wkx.provider.util.BeanFactory;
 import org.I0Itec.zkclient.ZkClient;
@@ -59,9 +59,9 @@ public class ZkRegister implements ApplicationRunner {
 
     private void RegisterService(){
         Reflections reflections=new Reflections("");
-        Set<Class<?>> classSet=reflections.getTypesAnnotatedWith(RpcService.class);
+        Set<Class<?>> classSet=reflections.getTypesAnnotatedWith(RpcProducer.class);
         classSet.stream().filter(cs->!cs.isInterface()).forEach(cs->{
-            RpcService rpcService=cs.getAnnotation(RpcService.class);
+            RpcProducer rpcService=cs.getAnnotation(RpcProducer.class);
             String serviceName=getBeanName(cs);
             String ServiceUrl=StringUtils.isEmpty(rpcService.url())?"/"+serviceName:rpcService.url();
             Arrays.stream(cs.getDeclaredMethods()).forEach(method -> {
